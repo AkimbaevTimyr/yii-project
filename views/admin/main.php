@@ -13,9 +13,9 @@ use yii\bootstrap5\Nav;
                         <?= Html::a('Админ Панель', ['admin/admin'])?>
                     </div>
                 </li>
-                <!-- <li>
-                    <?= Html::a('Обучение', ['site/education'])?>
-                </li> -->
+                <li>
+                    <?= Html::a('Добавить курс', ['admin/create-course'])?>
+                </li>
             </ul>
         </div>
     </nav>
@@ -50,3 +50,4 @@ use yii\bootstrap5\Nav;
         </li>
     </ul>
 </nav>
+

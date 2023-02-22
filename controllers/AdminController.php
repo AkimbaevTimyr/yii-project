@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Courses;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -43,6 +44,27 @@ class AdminController extends Controller
     public function actionAdmin()
     {
         return $this->render('main');
+    }
+
+
+
+    public function actionCreateCourse()
+    {
+        $course = new Courses();
+        $request = Yii::$app->request->post();
+        
+        if($request)
+        {
+            if($course->load($request) && $course->save() && $course->validate())
+            {
+                return $this->redirect('create-course');
+            }
+        }
+
+        return $this->render('createCourse', [
+            'course' => $course
+        ]);
+
     }
 
 }

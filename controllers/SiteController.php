@@ -10,7 +10,8 @@ use app\models\Students;
 use app\models\Courses;
 use yii\data\Pagination;
 use app\models\Events;
-
+use app\models\CourseMaterials;
+use app\models\CourseMaterialsItems;
 
 class SiteController extends Controller
 {
@@ -88,7 +89,10 @@ class SiteController extends Controller
 
     public function actionMain()
     {
+        $id  = 1;
         $events = Events::find()->all();
+        $course_materials = CourseMaterials::find()->where(['course_id' => $id])->all();
+        $course_materials_items = CourseMaterialsItems::find()->where(['course_id' => $id])->all();
         $tasks = [];
         foreach($events as $eve)
         {
@@ -106,7 +110,9 @@ class SiteController extends Controller
         return $this->render('main', [
             'model' => $model,
             'courses' => $courses,
-            'events' => $tasks
+            'events' => $tasks,
+            'course_materials' => $course_materials,
+            'course_materials_items' => $course_materials_items,
         ]);
     }
 
@@ -122,9 +128,10 @@ class SiteController extends Controller
 
     public function actionCourse(int $id)
     {
-
+        // $this->layout = 'empty';
         $events = Events::find()->all();
-
+        $course_materials = CourseMaterials::find()->where(['course_id' => $id])->all();
+        $course_materials_items = CourseMaterialsItems::find()->where(['course_id' => $id])->all();
         $tasks = [];
         foreach($events as $eve)
         {
@@ -137,8 +144,19 @@ class SiteController extends Controller
 
         $item = Courses::findOne($id);
 
-        return $this->render('course',['course' => $item, 'events' => $tasks]);
+        return $this->render('course',['course' => $item, 'events' => $tasks, 'course_materials' => $course_materials, 'course_materials_items' => $course_materials_items]);
 
     }
+
+
+    public function actionDownload($name)
+    {
+        $file = Yii::getAlias('../files/' . $name . '.docx');
+        if(file_exists($file))
+        {
+            \Yii::$app->response->sendFile($file);
+        }
+    }
+
 
 }

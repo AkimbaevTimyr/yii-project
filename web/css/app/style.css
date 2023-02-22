@@ -1068,6 +1068,8 @@ ul.nav-second-level {
   display: none;
 }
 .navbar.navbar-static-top {
+  display: flex;
+  justify-content: end;
   padding: 0;
   width: 100%;
   align-items: inherit;
@@ -1515,6 +1517,7 @@ button:focus {
   outline: 0 !important;
 }
 .btn {
+  width: 50px;
   border-radius: 3px;
   font-size: inherit;
 }
@@ -9519,6 +9522,7 @@ body.md-skin {
   .navbar-header {
     display: inline;
     float: left;
+    justify-content: end;
   }
   .sidebar-panel {
     z-index: 2;
@@ -9658,6 +9662,14 @@ a:hover{
 }
 
 
+
+
+
+/* header */
+
+.header_button{
+ 
+}
 
 
 .main_header{
@@ -9854,6 +9866,21 @@ tr {
   margin-top: 20px;
 }
 
+.course-materials{
+  margin-top: 30px;
+}
+
+
+.course-materials-item{
+  transition: 1;
+}
+
+.course-materials-item:hover{
+  transform: scale(1.03);
+}
+
+
+
 .datepicker{
   display: flex;
   align-items: center;
@@ -9864,4 +9891,24 @@ tr {
 .yii2fullcalendar{
   margin-top: 20px;
   color: black;
+}
+
+
+
+/* admin */
+
+.admin-create-course {
+  padding: 30px;
+}
+
+.black{
+  color: black
+}
+
+
+
+/* timetable */
+
+.timetable {
+  padding: 20px;
 }

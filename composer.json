@@ -21,7 +21,8 @@
         "miloschuman/yii2-highcharts-widget": "^8.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "yiisoft/yii2-bootstrap": "@dev",
-        "kartik-v/yii2-tabs-x": "*"
+        "kartik-v/yii2-tabs-x": "*",
+        "philippfrenzel/yii2fullcalendar": "3.6.7"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -34,8 +35,7 @@
         "codeception/module-yii2": "^1.1",
         "codeception/module-filesystem": "^2.0 || ^1.1",
         "codeception/verify": "^2.2",
-        "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4",
-        "philippfrenzel/yii2fullcalendar": "3.6.7"
+        "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4"
         
     },
     "config": {

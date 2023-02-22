@@ -13,40 +13,46 @@ use yii\bootstrap5\Nav;
                         <?= Html::a('Кабинет Учителя', ['teacher/main'])?>
                     </div>
                 </li>
-                <!-- <li>
-                    <?= Html::a('Обучение', ['site/education'])?>
-                </li> -->
+                <li>
+                    <button class="dropdown-content-button" onclick="myTimetableFunction()">Добавить расписание</button>
+                </li>
             </ul>
         </div>
     </nav>
 </div>
-<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0; height: 60px">
-    <div class="navbar-header">
-    </div>
-    <ul class="nav navbar-top-links navbar-right">
-        <li>
-            <?php 
-                echo Nav::widget([
-                'options' => ['class' => 'navbar-nav align-center'],
-                'items' => [
-                    Yii::$app->user->isGuest
-                        ? ['label' => 'Login', 'url' => ['/user/login']]
-                        : '<li class="nav-item">'
-                            . Html::beginForm(['/user/logout'])
-                            . Html::submitButton(
-                                'Выйти',
-                                ['class' => 'm-t-xs nav-link btn logout']
-                            )
-                            . Html::endForm()
-                            . '</li>'
-                    ]
-                ]);
-            ?>
-        </li>
-        <li>
-            <a class="right-sidebar-toggle">
-                <i class="fa fa-tasks"></i>
-            </a>
-        </li>
-    </ul>
-</nav>
+<div class="main-body">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0; height: 60px">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <div style="margin-right: 30px; font-size:20px; display: flex; margin-right: 30px; color: rgba(0, 0, 0, 0.55); align-items: center; cursor: pointer" onclick="exitFunction()">Выйти</div>
+        </ul>
+    </nav>
+    <div class="main-body-content" id="main-body-content"></div>
+</div>
+
+<script type="text/javascript">
+
+    function myTimetableFunction() {
+        $.ajax({
+            url: '/teacher/timetable',
+            method: 'GET',
+            success: function(data) {
+                $("#main-body-content").html(data);
+            }
+        })
+        document.getElementById('main-body-content').classList.add('show')
+    }
+
+
+    function exitFunction(){
+        $.ajax({
+            url: '/user/logout',
+            method: "POST",
+            success: function(){
+                console.log('exit');
+            }
+        })
+    }
+
+</script>
