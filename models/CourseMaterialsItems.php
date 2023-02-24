@@ -12,7 +12,8 @@ class CourseMaterialsItems extends ActiveRecord
     {
         return[
             [['name'], 'required'],
-            ['course_id'],
+            [['course_id'] ,'required'],
+            [['course_materials_id'], 'required']
         ];
     }
 

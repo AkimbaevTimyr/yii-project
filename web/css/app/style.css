@@ -9876,7 +9876,7 @@ tr {
 }
 
 .course-materials-item:hover{
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 
 
@@ -9899,6 +9899,7 @@ tr {
 
 .admin-create-course {
   padding: 30px;
+  font-size: 16px;
 }
 
 .black{

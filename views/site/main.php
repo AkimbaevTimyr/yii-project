@@ -4,7 +4,7 @@ use yii\helpers\Html;
 ?>
 
 <div class="wrapper">
-    <nav class="navbar-default navbar-static-side" role="navigation">
+    <nav class="navbar-default navbar-static-side" role="navigation" style="background-color: #293846;">
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
@@ -33,7 +33,7 @@ use yii\helpers\Html;
         <div class="navbar-header">
         </div>
         <ul class="nav navbar-top-links navbar-right ">
-            <div style="margin-right: 30px; font-size:20px; display: flex; margin-right: 30px; color: rgba(0, 0, 0, 0.55); align-items: center;" onclick="exitFunction()">Выйти</div>
+            <div style="margin-right: 30px; font-size:20px; display: flex; margin-right: 30px; color: rgba(0, 0, 0, 0.55); align-items: center; cursor: pointer" onclick="exitFunction()">Выйти</div>
         </ul>
     </nav>
     <div>
@@ -41,12 +41,7 @@ use yii\helpers\Html;
     </div>
 
     <div class="main-body-content" id="main-body-content">
-        <?= $this->render('course', [
-            'course' => $course, 
-            'events' => $events, 
-            'course_materials' => $course_materials,
-            'course_materials_items' => $course_materials_items,
-        ]); ?>
+        
     </div>
     
 </div>

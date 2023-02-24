@@ -10,6 +10,7 @@ use app\models\Students;
 use app\models\Courses;
 use yii\data\Pagination;
 use app\models\Events;
+
 use app\models\CourseMaterials;
 use app\models\CourseMaterialsItems;
 
@@ -89,30 +90,14 @@ class SiteController extends Controller
 
     public function actionMain()
     {
-        $id  = 1;
-        $events = Events::find()->all();
-        $course_materials = CourseMaterials::find()->where(['course_id' => $id])->all();
-        $course_materials_items = CourseMaterialsItems::find()->where(['course_id' => $id])->all();
-        $tasks = [];
-        foreach($events as $eve)
-        {
-            $event = new \yii2fullcalendar\models\Event();
-            $event->id = $eve->id;
-            $event->title = $eve->title;
-            $event->start = $eve->created_date;
-            $tasks[] = $event;
-        }
+       
         
         $model = new Courses();
-        $query = Courses::find();
-        $courses = $query->all();
+        $query = Courses::find()->all();
 
         return $this->render('main', [
             'model' => $model,
-            'courses' => $courses,
-            'events' => $tasks,
-            'course_materials' => $course_materials,
-            'course_materials_items' => $course_materials_items,
+            'courses' => $query,
         ]);
     }
 
@@ -128,7 +113,6 @@ class SiteController extends Controller
 
     public function actionCourse(int $id)
     {
-        // $this->layout = 'empty';
         $events = Events::find()->all();
         $course_materials = CourseMaterials::find()->where(['course_id' => $id])->all();
         $course_materials_items = CourseMaterialsItems::find()->where(['course_id' => $id])->all();
@@ -144,7 +128,12 @@ class SiteController extends Controller
 
         $item = Courses::findOne($id);
 
-        return $this->render('course',['course' => $item, 'events' => $tasks, 'course_materials' => $course_materials, 'course_materials_items' => $course_materials_items]);
+        return $this->render('course',[
+            'course' => $item, 
+            'events' => $tasks, 
+            'course_materials' => $course_materials, 
+            'course_materials_items' => $course_materials_items
+        ]);
 
     }
 

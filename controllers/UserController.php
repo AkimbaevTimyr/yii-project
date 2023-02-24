@@ -104,7 +104,7 @@ class UserController extends Controller
 
             $session->setFlash('successMessage', 'Регистрация прошла успешно');
 
-            //Присвоение роли пользовет
+            //Присвоение роли пользователю
             $auth = Yii::$app->authManager;
             $userRole = $auth->getRole('user');
             $auth->assign($userRole, $user->getId());

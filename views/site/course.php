@@ -98,84 +98,33 @@ use yii\helpers\Html;
         <?php $this->endBlock(); ?>
 
         <?php $this->beginBlock('CourseMaterials') ?>
-        <div class="panel-group course-materials" id="accordion" role="tablist" aria-multiselectable="true">
-                <?php  foreach ($course_materials as $item): ?>
-                        <div class="panel panel-default">
-                                <div class="panel-heading" role="tab">
-                                <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse"
-                                        data-parent="#accordion" href="#collapse-one" aria-expanded="true">
-                                                <?= $item->name ?>
-                                        </a>
-                                </h4>
-                                </div>
-                                <!-- Содержимое раскрыто: aria-expanded="true", есть класс class="in" -->
-                                <div id="collapse-one" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true">
-                                <div class="panel-body">
-                                        <?php foreach( $course_materials_items as $item): ?>
-                                                <h4 class="black course-materials-item"><a><?= $item->name ?></a></h4>
-                                        <?php endforeach;?>
-                                        <div>
-                                                <?= Html::a('Скачать материалы курса', ['site/download', 'name' =>  strtolower($course->name)]) ?>
+                <div class="panel-group course-materials" id="accordion" role="tablist" aria-multiselectable="true">
+                        <?php foreach ($course_materials as $course_item): ?>
+                                <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab">
+                                                <h4 class="panel-title">
+                                                        <a role="button" data-toggle="collapse"
+                                                        data-parent="#accordion" href="#<?php echo $course_item->id ?>" aria-expanded="true">
+                                                                <?= $course_item->name ?>
+                                                        </a>
+                                                </h4>
+                                        </div>
+                                        <div id="<?php echo $course_item->id ?>" class="panel-collapse collapse in" role="tabpanel" aria-expanded="true">
+                                                <div class="panel-body">
+                                                        <?php foreach ($course_materials_items as $item): ?>
+                                                                <?php if($course_item->course_materials_id == $item->course_materials_id): ?>
+                                                                        <h4 class="black"><?= $item->name ?></h4>
+                                                                <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                </div>
                                         </div>
                                 </div>
-                                </div>
-                                
-                        </div>
-
-                <?php endforeach; ?>
-                <!-- <div class="panel panel-default">
-                        <div class="panel-heading" role="tab">
-                        <h4 class="panel-title">
-                                <!-- Содержимое скрыто: aria-expanded="false", есть класс class="collapsed" -->
-                                <!-- <a class="collapsed" role="button" data-toggle="collapse"
-                                data-parent="#accordion" href="#collapse-two" aria-expanded="false">
-                                Основы Python
-                                </a>
-                        </h4>
-                        </div>
-                        <!-- Содержимое скрыто:  aria-expanded="false", нет класса class="in" -->
-                        <!-- <div id="collapse-two" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
-                        <div class="panel-body">
-                                <h4 class="black">Второй заголовок</h4>
-                                <p class="black">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                        </div>
-                        </div> -->
-                <!-- </div>
-                <div class="panel panel-default"> -->
-                        <div class="panel-heading" role="tab">
-                        <h4 class="panel-title">
-                                <!-- Содержимое скрыто: aria-expanded="false", есть класс class="collapsed" -->
-                                <a class="collapsed" role="button" data-toggle="collapse"
-                                data-parent="#accordion" href="#collapse-three" aria-expanded="false">
-                                Коллекция,циклы и логика в Python
-                                </a>
-                        </h4>
-                        </div>
-                        <!-- Содержимое скрыто: aria-expanded="false", нет класса class="in" -->
-                        <div id="collapse-three" class="panel-collapse collapse" role="tabpanel" aria-expanded="false">
-                        <div class="panel-body">
-                                <h4 class="black">Третий заголовок</h4>
-                                <p class="black">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </p>
-                        </div>
-                        </div>
-                <!-- </div> --> --> -->
-        </div>
-
+                        <?php endforeach; ?>
+                </div>
         <?php $this->endBlock(); ?>
        
+
+        
        <?php echo Tabs::Widget([
         'items' => [
             [

@@ -14,7 +14,13 @@ use yii\bootstrap5\Nav;
                     </div>
                 </li>
                 <li>
-                    <?= Html::a('Добавить курс', ['admin/create-course'])?>
+                    <?= Html::a('Курсы', ['admin/create-course'], ['style' => 'font-size: 16px'])?>
+                </li>
+                <li>
+                    <?= Html::a('Материалы курса', ['admin/materials'] , ['style' => 'font-size: 16px'])?>
+                </li>
+                <li>
+                    <?= Html::a('Добавить файлы', ['admin/upload'] , ['style' => 'font-size: 16px'])?>
                 </li>
             </ul>
         </div>
@@ -50,4 +56,5 @@ use yii\bootstrap5\Nav;
         </li>
     </ul>
 </nav>
+
 
